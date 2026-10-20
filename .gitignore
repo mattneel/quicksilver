@@ -1,0 +1,12 @@
+/target/
+/.quicksilver/
+**/.quicksilver/
+**/.elixir_ls/
+**/.expert/
+**/_build/
+**/deps/
+__pycache__/
+*.pyc
+/reports/local/
+.DS_Store
+

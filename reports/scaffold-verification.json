@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "evidence_class": "scaffold",
+  "status": "passed",
+  "commands": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/validate_kit.py"
+      ],
+      "exit_code": 0,
+      "diagnostic_error": false,
+      "duration_seconds": 0.086,
+      "stdout": "{\n  \"schema_version\": 1,\n  \"evidence_class\": \"structure\",\n  \"mode\": \"kit\",\n  \"status\": \"passed\",\n  \"task_count\": 32,\n  \"fixture_count\": 35,\n  \"fixture_anchor_count\": 86,\n  \"failures\": []\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "exit_code": 0,
+      "diagnostic_error": false,
+      "duration_seconds": 0.049,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "--locked",
+        "--offline",
+        "--all-targets"
+      ],
+      "exit_code": 0,
+      "diagnostic_error": false,
+      "duration_seconds": 9.569,
+      "stdout": "\nrunning 18 tests\ntest server::tests::encoding_follows_client_preference_with_utf16_fallback ... ok\ntest syntax::tests::flat_symbols_include_containers ... ok\ntest syntax::tests::invalid_syntax_has_explicit_syntax_only_coverage ... ok\ntest syntax::tests::clauses_guards_and_defaults_remain_source_declarations ... ok\ntest syntax::tests::dynamic_module_names_do_not_claim_static_definitions ... ok\ntest syntax::tests::unicode_symbol_ranges_match_the_selected_encoding ... ok\ntest text::tests::astral_and_combining_characters_use_protocol_units ... ok\ntest text::tests::crlf_and_trailing_empty_line_have_valid_positions ... ok\ntest text::tests::positions_round_trip_at_every_visible_character_boundary ... ok\ntest server::tests::invalid_changes_preserve_the_last_valid_document ... ok\ntest syntax::tests::deeply_nested_syntax_returns_a_controlled_outline_error ... ok\ntest text::tests::out_of_range_positions_and_offsets_return_no_result ... ok\ntest transport::tests::concatenated_frames_and_utf8_byte_lengths_round_trip ... ok\ntest syntax::tests::declaration_outline_excludes_calls_comments_strings_and_quotes ... ok\ntest transport::tests::partial_payload_and_deep_json_fail_without_a_message ... ok\ntest transport::tests::duplicate_lengths_and_oversized_headers_are_rejected ... ok\ntest transport::tests::huge_content_length_is_rejected_before_allocation ... ok\ntest syntax::tests::oversized_source_is_rejected_before_parse ... ok\n\ntest result: ok. 18 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n",
+      "stderr": "   Compiling memchr v2.8.3\n   Compiling zmij v1.0.23\n   Compiling shlex v2.0.1\n   Compiling proc-macro2 v1.0.107\n   Compiling find-msvc-tools v0.1.15\n   Compiling serde_core v1.0.229\n   Compiling unicode-ident v1.0.27\n   Compiling tree-sitter-language v0.1.9\n   Compiling itoa v1.0.18\n   Compiling cc v1.9.0\n   Compiling quote v1.0.47\n   Compiling hashbrown v0.17.1\n   Compiling equivalent v1.0.3\n   Compiling serde_json v1.0.154\n   Compiling crossbeam-utils v0.8.23\n   Compiling foldhash v0.2.0\n   Compiling aho-corasick v1.1.5\n   Compiling serde v1.0.229\n   Compiling regex-syntax v0.8.11\n   Compiling indexmap v2.14.2\n   Compiling syn v3.0.9\n   Compiling crossbeam-channel v0.5.17\n   Compiling streaming-iterator v0.1.9\n   Compiling log v0.4.34\n   Compiling tree-sitter-elixir v0.3.5\n   Compiling serde_derive v1.0.229\n   Compiling regex-automata v0.4.18\n   Compiling tree-sitter v0.25.10\n   Compiling lsp-server v0.7.9\n   Compiling regex v1.13.1\n   Compiling quicksilver v0.0.1 (/workspace/scratch/2f908de7d9e1/quicksilver-kit)\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 9.54s\n     Running unittests src/lib.rs (/workspace/scratch/2f908de7d9e1/quicksilver-clean-target/debug/deps/quicksilver-cd98f09a56f0b95f)\n     Running unittests src/main.rs (/workspace/scratch/2f908de7d9e1/quicksilver-clean-target/debug/deps/quicksilver-12df925c147e8e42)\n"
+    },
+    {
+      "command": [
+        "cargo",
+        "clippy",
+        "--locked",
+        "--offline",
+        "--all-targets",
+        "--",
+        "-D",
+        "warnings"
+      ],
+      "exit_code": 0,
+      "diagnostic_error": false,
+      "duration_seconds": 5.145,
+      "stdout": "",
+      "stderr": "    Checking memchr v2.8.3\n   Compiling zmij v1.0.23\n   Compiling itoa v1.0.18\n    Checking serde_core v1.0.229\n    Checking regex-syntax v0.8.11\n    Checking crossbeam-utils v0.8.23\n    Checking tree-sitter-language v0.1.9\n    Checking log v0.4.34\n    Checking streaming-iterator v0.1.9\n    Checking tree-sitter-elixir v0.3.5\n    Checking crossbeam-channel v0.5.17\n    Checking aho-corasick v1.1.5\n   Compiling serde_json v1.0.154\n   Compiling tree-sitter v0.25.10\n    Checking regex-automata v0.4.18\n    Checking serde v1.0.229\n    Checking lsp-server v0.7.9\n    Checking regex v1.13.1\n    Checking quicksilver v0.0.1 (/workspace/scratch/2f908de7d9e1/quicksilver-kit)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 5.11s\n"
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "diagnostic_error": false,
+      "duration_seconds": 0.243,
+      "stdout": "",
+      "stderr": "   Compiling quicksilver v0.0.1 (/workspace/scratch/2f908de7d9e1/quicksilver-kit)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.23s\n"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/lsp_smoke.py",
+        "--server",
+        "/workspace/scratch/2f908de7d9e1/quicksilver-clean-target/debug/quicksilver"
+      ],
+      "exit_code": 0,
+      "diagnostic_error": false,
+      "duration_seconds": 0.185,
+      "stdout": "{\n  \"schema_version\": 1,\n  \"evidence_class\": \"scaffold\",\n  \"status\": \"passed\",\n  \"server_version\": \"quicksilver 0.0.1 (source-only bootstrap)\",\n  \"binary_sha256\": \"e28e38efc1ed3b42078e23e3cde1cc302cdbd00cef0eb8d2b069ddc526f597c7\",\n  \"platform\": \"Linux-6.18.55-x86_64-with-glibc2.39\",\n  \"python\": \"3.12.14\",\n  \"duration_seconds\": 0.123,\n  \"passed_groups\": 16,\n  \"groups\": [\n    \"CLI version\",\n    \"utf-16: lifecycle and truthful capabilities\",\n    \"utf-16: CRLF and exact declaration ranges\",\n    \"utf-16: non-BMP character before a symbol\",\n    \"utf-16: malformed edit and recovery\",\n    \"utf-16: stale edit rejection\",\n    \"utf-16: status, document close, and shutdown\",\n    \"utf-8: lifecycle and truthful capabilities\",\n    \"utf-8: CRLF and exact declaration ranges\",\n    \"utf-8: non-BMP character before a symbol\",\n    \"utf-8: malformed edit and recovery\",\n    \"utf-8: stale edit rejection\",\n    \"utf-8: status, document close, and shutdown\",\n    \"flat SymbolInformation compatibility\",\n    \"fragmented headers, bodies, and UTF-8 bytes\",\n    \"exit without shutdown\"\n  ],\n  \"excluded\": [\n    \"semantic resolution\",\n    \"BEAM worker\",\n    \"OMP integration\",\n    \"release performance\"\n  ]\n}\n",
+      "stderr": ""
+    }
+  ]
+}

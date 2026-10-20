@@ -1,0 +1,1800 @@
+{
+  "schema_version": 1,
+  "evidence_class": "target",
+  "scope": "Future semantic acceptance fixtures. No case records an executed Elixir oracle.",
+  "source_domain": "Each case's files define its isolated source snapshot unless the case explicitly declares multiple roots.",
+  "anchor_schema": {
+    "anchor": "Unique literal marker on the same line as selectionText.",
+    "occurrence": "One-based occurrence of selectionText before the anchor.",
+    "coordinates": "Zero-based LSP positions, derived from the source bytes and negotiated encoding."
+  },
+  "cases": [
+    {
+      "id": "FX-001",
+      "category": "alias_as",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/aliases.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Resolve a remote call through an explicit module alias.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/aliases.ex",
+            "anchor": "qs:alias-as-call",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Accounts.fetch/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/accounts.ex",
+            "anchor": "qs:accounts-fetch-def",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-002",
+      "category": "alias_chain",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/aliases.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Resolve an alias whose target is another alias.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/aliases.ex",
+            "anchor": "qs:alias-chain-call",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Accounts.fetch/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/accounts.ex",
+            "anchor": "qs:accounts-fetch-def",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-003",
+      "category": "grouped_alias",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/accounts.ex",
+        "fixtures/mix_project/lib/aliases.ex",
+        "fixtures/mix_project/lib/math.ex"
+      ],
+      "scenario": "Resolve a function through a grouped alias declaration.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/aliases.ex",
+            "anchor": "qs:alias-group-call",
+            "selectionText": "plus",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Math.plus/2",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/math.ex",
+            "anchor": "qs:math-plus-def",
+            "selectionText": "plus",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-004",
+      "category": "alias_inner_scope",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/aliases.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Use the function-local alias at the inner call.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/aliases.ex",
+            "anchor": "qs:alias-inner-call",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Alternative.fetch/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/accounts.ex",
+            "anchor": "qs:alternative-fetch-def",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-005",
+      "category": "alias_outer_scope",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/aliases.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Preserve the module alias after another function declares a local alias.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/aliases.ex",
+            "anchor": "qs:alias-outer-call",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Accounts.fetch/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/accounts.ex",
+            "anchor": "qs:accounts-fetch-def",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-006",
+      "category": "import_only",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/imports.ex",
+        "fixtures/mix_project/lib/math.ex"
+      ],
+      "scenario": "Resolve a call admitted by an import only filter.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/imports.ex",
+            "anchor": "qs:import-only-call",
+            "selectionText": "plus",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Math.plus/2",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/math.ex",
+            "anchor": "qs:math-plus-def",
+            "selectionText": "plus",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-007",
+      "category": "import_except",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/math.ex",
+        "fixtures/mix_project/lib/imports.ex"
+      ],
+      "scenario": "Resolve the private local function that an import except filter leaves available.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/imports.ex",
+            "anchor": "qs:import-except-call",
+            "selectionText": "times",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.ImportExcept.times/2",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/imports.ex",
+            "anchor": "qs:local-times-def",
+            "selectionText": "times",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-008",
+      "category": "rebind_rhs",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/variables.ex"
+      ],
+      "scenario": "Resolve the right-hand variable to the binding before the assignment.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/variables.ex",
+            "anchor": "qs:rebind-second",
+            "selectionText": "value",
+            "occurrence": 2
+          }
+        },
+        "symbol": "QsFixtures.Variables.rebound/1:value:first",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/variables.ex",
+            "anchor": "qs:rebind-first",
+            "selectionText": "value",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-009",
+      "category": "rebind_result",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/variables.ex"
+      ],
+      "scenario": "Resolve the final variable read to the new binding.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/variables.ex",
+            "anchor": "qs:rebind-result",
+            "selectionText": "value",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Variables.rebound/1:value:second",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/variables.ex",
+            "anchor": "qs:rebind-second",
+            "selectionText": "value",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-010",
+      "category": "pin",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/variables.ex"
+      ],
+      "scenario": "Resolve a pinned variable to its existing function parameter.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/variables.ex",
+            "anchor": "qs:pin-query",
+            "selectionText": "id",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Variables.pinned/2:id:parameter",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/variables.ex",
+            "anchor": "qs:pin-parameter",
+            "selectionText": "id",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-011",
+      "category": "with_scope",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/variables.ex"
+      ],
+      "scenario": "Keep the with generator variable separate from the outer variable.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "assertions": [
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:with-inner-read",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:with-generator",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            ]
+          },
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:with-outer-read",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:with-outer-binding",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-012",
+      "category": "anonymous_shadow",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/variables.ex"
+      ],
+      "scenario": "Keep an anonymous function parameter separate from the outer parameter.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "assertions": [
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:shadow-anonymous",
+                "selectionText": "value",
+                "occurrence": 2
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:shadow-anonymous",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            ]
+          },
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:shadow-outer-read",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/variables.ex",
+                "anchor": "qs:shadow-outer-parameter",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-013",
+      "category": "default_arities",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/functions.ex"
+      ],
+      "scenario": "Resolve both callable arities to the declared default-argument origin.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "declarationOrigin": {
+          "file": "fixtures/mix_project/lib/functions.ex",
+          "anchor": "qs:greet-def",
+          "selectionText": "greet",
+          "occurrence": 1
+        },
+        "declaredArity": 2,
+        "callableArities": [
+          1,
+          2
+        ],
+        "inventedSourceLocations": false,
+        "assertions": [
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/mix_project/lib/functions.ex",
+                "anchor": "qs:default-short-call",
+                "selectionText": "greet",
+                "occurrence": 1
+              }
+            },
+            "symbol": "QsFixtures.Functions.greet/1",
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/functions.ex",
+                "anchor": "qs:greet-def",
+                "selectionText": "greet",
+                "occurrence": 1
+              }
+            ]
+          },
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/mix_project/lib/functions.ex",
+                "anchor": "qs:default-full-call",
+                "selectionText": "greet",
+                "occurrence": 1
+              }
+            },
+            "symbol": "QsFixtures.Functions.greet/2",
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/functions.ex",
+                "anchor": "qs:greet-def",
+                "selectionText": "greet",
+                "occurrence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-014",
+      "category": "pipe_arity",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/imports.ex",
+        "fixtures/mix_project/lib/math.ex"
+      ],
+      "scenario": "Include the piped value in the effective call arity.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/imports.ex",
+            "anchor": "qs:pipe-call",
+            "selectionText": "plus",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Math.plus/2",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/math.ex",
+            "anchor": "qs:math-plus-def",
+            "selectionText": "plus",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html",
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-015",
+      "category": "capture_arity",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/functions.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Resolve a remote capture through its explicit arity.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:capture-call",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Accounts.fetch/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/accounts.ex",
+            "anchor": "qs:accounts-fetch-def",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-016",
+      "category": "guard_macro",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/functions.ex"
+      ],
+      "scenario": "Resolve a local guard macro without a fabricated function declaration.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:guard-call",
+            "selectionText": "is_positive",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Functions.is_positive/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:guard-def",
+            "selectionText": "is_positive",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "symbolKind": "macro"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-017",
+      "category": "private_function",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/functions.ex"
+      ],
+      "scenario": "Resolve a private local call within its module.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:private-call",
+            "selectionText": "hidden",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Functions.hidden/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:private-def",
+            "selectionText": "hidden",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-018",
+      "category": "multiple_clauses",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/functions.ex"
+      ],
+      "scenario": "Preserve one function identity and both source clause origins.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:parse-call",
+            "selectionText": "parse",
+            "occurrence": 2
+          }
+        },
+        "symbol": "QsFixtures.Functions.parse/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:parse-clause-zero",
+            "selectionText": "parse",
+            "occurrence": 1
+          },
+          {
+            "file": "fixtures/mix_project/lib/functions.ex",
+            "anchor": "qs:parse-clause-integer",
+            "selectionText": "parse",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "assertionLevel": "semantic identity and clause-origin set",
+        "lspPrimaryLocationPolicy": "Protocol adapter can select a documented primary clause while provenance preserves both origins."
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-019",
+      "category": "delegate",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/delegates.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Resolve the delegate declaration and its renamed target relation.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/delegates.ex",
+            "anchor": "qs:delegate-call",
+            "selectionText": "get",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Delegates.get/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/delegates.ex",
+            "anchor": "qs:delegate-def",
+            "selectionText": "get",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "delegatedTarget": {
+          "symbol": "QsFixtures.Accounts.fetch/1",
+          "targets": [
+            {
+              "file": "fixtures/mix_project/lib/accounts.ex",
+              "anchor": "qs:accounts-fetch-def",
+              "selectionText": "fetch",
+              "occurrence": 1
+            }
+          ]
+        }
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-020",
+      "category": "protocol_implementation",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/protocols.ex"
+      ],
+      "scenario": "Find the Integer implementation of the protocol callback.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/implementation",
+          "position": {
+            "file": "fixtures/mix_project/lib/protocols.ex",
+            "anchor": "qs:protocol-callback",
+            "selectionText": "label",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Label.Integer.label/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/protocols.ex",
+            "anchor": "qs:protocol-integer-impl",
+            "selectionText": "label",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "implementedProtocol": "QsFixtures.Label",
+        "forType": "Integer"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Protocol.html",
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-021",
+      "category": "behavior_implementation",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/behaviors.ex"
+      ],
+      "scenario": "Find the declared implementation of a behavior callback.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/implementation",
+          "position": {
+            "file": "fixtures/mix_project/lib/behaviors.ex",
+            "anchor": "qs:behavior-callback",
+            "selectionText": "handle",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.EchoHandler.handle/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/behaviors.ex",
+            "anchor": "qs:behavior-implementation",
+            "selectionText": "handle",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-022",
+      "category": "use_without_worker",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/maker.ex",
+        "fixtures/mix_project/lib/generated.ex"
+      ],
+      "scenario": "Refuse a generated definition query when no verified expansion exists.",
+      "expected": {
+        "classification": "expected_refusal",
+        "outcome": "refusal",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/generated.ex",
+            "anchor": "qs:generated-call",
+            "selectionText": "generated",
+            "occurrence": 1
+          }
+        },
+        "mode": {
+          "projectExecution": false,
+          "worker": "absent",
+          "compiledMetadata": "absent"
+        },
+        "completeness": "unavailable",
+        "reason": "requires_verified_macro_expansion",
+        "lspError": "RequestFailed",
+        "fabricatedTargets": [],
+        "claimOfCompleteAnalysis": false
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html",
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-023",
+      "category": "use_with_worker",
+      "required_phase": "P4",
+      "files": [
+        "fixtures/mix_project/lib/generated.ex",
+        "fixtures/mix_project/lib/maker.ex"
+      ],
+      "scenario": "Resolve a generated definition after the optional worker verifies the expansion.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/generated.ex",
+            "anchor": "qs:generated-call",
+            "selectionText": "generated",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Generated.generated/0",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/maker.ex",
+            "anchor": "qs:generated-origin",
+            "selectionText": "generated",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "mode": {
+          "projectExecution": true,
+          "worker": "verified"
+        },
+        "expansionSite": {
+          "file": "fixtures/mix_project/lib/generated.ex",
+          "anchor": "qs:generated-use",
+          "selectionText": "QsFixtures.Maker",
+          "occurrence": 1
+        },
+        "requiredProvenance": [
+          "source_hash",
+          "toolchain_identity",
+          "expansion_origin",
+          "worker_revision"
+        ],
+        "compilationMustPrecedeOracle": true,
+        "sourceLocationContract": "The macro uses quote location: :keep. The compiler oracle must verify the exact generated definition origin."
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html",
+          "https://elixir.hexdocs.pm/Code.html",
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html#quote/2-stacktrace-information"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-024",
+      "category": "quote_ghost_definition",
+      "required_phase": "P2",
+      "files": [
+        "fixtures/mix_project/lib/quoted.ex"
+      ],
+      "scenario": "Exclude a quoted declaration from the enclosing module's runtime outline.",
+      "expected": {
+        "classification": "supported_exact",
+        "polarity": "negative",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/documentSymbol",
+          "file": "fixtures/mix_project/lib/quoted.ex"
+        },
+        "requiredDeclarations": [
+          "QsFixtures.Quoted",
+          "QsFixtures.Quoted.quoted/0",
+          "QsFixtures.Quoted.live/0"
+        ],
+        "forbiddenRuntimeDeclarations": [
+          "QsFixtures.Quoted.ghost/0"
+        ],
+        "excludedOrigin": {
+          "file": "fixtures/mix_project/lib/quoted.ex",
+          "anchor": "qs:quoted-ghost",
+          "selectionText": "ghost",
+          "occurrence": 1
+        },
+        "completeness": "complete",
+        "domain": "direct_runtime_declarations_in_document"
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-025",
+      "category": "dynamic_apply_rename",
+      "required_phase": "P5",
+      "files": [
+        "fixtures/mix_project/lib/dynamic.ex"
+      ],
+      "scenario": "Refuse public-function rename when a dynamic apply prevents complete call-site proof.",
+      "expected": {
+        "classification": "expected_refusal",
+        "outcome": "refusal",
+        "query": {
+          "method": "textDocument/rename",
+          "position": {
+            "file": "fixtures/mix_project/lib/dynamic.ex",
+            "anchor": "qs:dynamic-target-def",
+            "selectionText": "known",
+            "occurrence": 1
+          },
+          "newName": "renamed"
+        },
+        "dynamicCall": {
+          "file": "fixtures/mix_project/lib/dynamic.ex",
+          "anchor": "qs:dynamic-apply",
+          "selectionText": "apply",
+          "occurrence": 1
+        },
+        "completeness": "partial",
+        "reason": "dynamic_function_name",
+        "lspError": "RequestFailed",
+        "edits": [],
+        "partialEditSetAllowed": false
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html",
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-026",
+      "category": "reference_noise",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/reference_noise.ex"
+      ],
+      "scenario": "Exclude unrelated local calls and textual lookalikes from semantic references.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/references",
+          "position": {
+            "file": "fixtures/mix_project/lib/reference_noise.ex",
+            "anchor": "qs:noise-real-call",
+            "selectionText": "echo",
+            "occurrence": 1
+          },
+          "includeDeclaration": false
+        },
+        "symbol": "QsFixtures.Target.echo/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/reference_noise.ex",
+            "anchor": "qs:noise-real-call",
+            "selectionText": "echo",
+            "occurrence": 1
+          },
+          {
+            "file": "fixtures/mix_project/lib/reference_noise.ex",
+            "anchor": "qs:noise-capture",
+            "selectionText": "echo",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "excluded": [
+          {
+            "file": "fixtures/mix_project/lib/reference_noise.ex",
+            "anchor": "qs:noise-local-def",
+            "selectionText": "echo",
+            "occurrence": 1
+          },
+          {
+            "file": "fixtures/mix_project/lib/reference_noise.ex",
+            "anchor": "qs:noise-local-call",
+            "selectionText": "echo",
+            "occurrence": 1
+          },
+          {
+            "file": "fixtures/mix_project/lib/reference_noise.ex",
+            "anchor": "qs:noise-string",
+            "selectionText": "echo",
+            "occurrence": 1
+          },
+          {
+            "file": "fixtures/mix_project/lib/reference_noise.ex",
+            "anchor": "qs:noise-comment",
+            "selectionText": "echo",
+            "occurrence": 1
+          }
+        ],
+        "expectedReferenceCount": 2
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html",
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-027",
+      "category": "unknown_remote",
+      "required_phase": "P3",
+      "files": [
+        "fixtures/mix_project/lib/dynamic.ex"
+      ],
+      "scenario": "Refuse a function target when the remote module remains unknown.",
+      "expected": {
+        "classification": "expected_refusal",
+        "outcome": "refusal",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/mix_project/lib/dynamic.ex",
+            "anchor": "qs:unknown-remote",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "completeness": "unsupported",
+        "reason": "dynamic_remote_module",
+        "lspError": "RequestFailed",
+        "fabricatedTargets": []
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-028",
+      "category": "utf16_unicode",
+      "required_phase": "P1",
+      "files": [
+        "fixtures/plain/unicode.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Convert query positions after multibyte text without byte-column confusion.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/plain/unicode.ex",
+            "anchor": "qs:unicode-call",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Accounts.fetch/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/accounts.ex",
+            "anchor": "qs:accounts-fetch-def",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "positionOracle": {
+          "line": 1,
+          "utf16Character": 47,
+          "utf8Character": 50
+        },
+        "encodings": [
+          "utf-16",
+          "utf-8"
+        ],
+        "requiredLaterSemanticPhase": "P3",
+        "p1Assertion": "Both encodings identify the same fetch token.",
+        "p3Assertion": "The definition resolves to the same Accounts function."
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-029",
+      "category": "crlf_positions",
+      "required_phase": "P1",
+      "files": [
+        "fixtures/plain/crlf.ex",
+        "fixtures/mix_project/lib/accounts.ex"
+      ],
+      "scenario": "Preserve query positions in a document with actual CRLF bytes.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/plain/crlf.ex",
+            "anchor": "qs:crlf-call",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsFixtures.Accounts.fetch/1",
+        "targets": [
+          {
+            "file": "fixtures/mix_project/lib/accounts.ex",
+            "anchor": "qs:accounts-fetch-def",
+            "selectionText": "fetch",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "lineEndings": "CRLF",
+        "requiredLaterSemanticPhase": "P3",
+        "p1Assertion": "CRLF does not create an extra line or column.",
+        "p3Assertion": "The definition resolves to the Accounts function."
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.SpecialForms.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-030",
+      "category": "disk_buffer_race",
+      "required_phase": "P1",
+      "files": [
+        "fixtures/scenarios/disk_before.ex",
+        "fixtures/scenarios/buffer.ex",
+        "fixtures/scenarios/disk_after.ex"
+      ],
+      "scenario": "Preserve open-buffer precedence across disk edits and reconcile after close.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "domain": "logical_document_snapshot",
+        "completeness": "complete",
+        "logicalPath": "lib/snapshot.ex",
+        "events": [
+          {
+            "event": "disk_seed",
+            "sourceFile": "fixtures/scenarios/disk_before.ex"
+          },
+          {
+            "event": "didOpen",
+            "version": 1,
+            "sourceFile": "fixtures/scenarios/buffer.ex"
+          },
+          {
+            "event": "external_disk_write",
+            "sourceFile": "fixtures/scenarios/disk_after.ex"
+          },
+          {
+            "event": "didSave",
+            "includeText": false
+          },
+          {
+            "event": "documentSymbol",
+            "expectedFunctions": [
+              "buffer_only/0"
+            ]
+          },
+          {
+            "event": "didClose"
+          },
+          {
+            "event": "source_index_query",
+            "expectedFunctions": [
+              "after_edit/0"
+            ],
+            "requiredPhase": "P2"
+          }
+        ],
+        "forbiddenIntermediateFunctions": [
+          "before_edit/0",
+          "after_edit/0"
+        ],
+        "bufferTarget": {
+          "file": "fixtures/scenarios/buffer.ex",
+          "anchor": "qs:buffer-def",
+          "selectionText": "buffer_only",
+          "occurrence": 1
+        },
+        "finalDiskTarget": {
+          "file": "fixtures/scenarios/disk_after.ex",
+          "anchor": "qs:disk-after-def",
+          "selectionText": "after_edit",
+          "occurrence": 1
+        }
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Code.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-031",
+      "category": "worktree_identity",
+      "required_phase": "P1",
+      "files": [
+        "fixtures/worktrees/a/mix.exs",
+        "fixtures/worktrees/b/mix.exs",
+        "fixtures/worktrees/a/lib/shared.ex",
+        "fixtures/worktrees/b/lib/shared.ex"
+      ],
+      "scenario": "Keep equal relative paths separate across two workspace roots.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "completeness": "complete",
+        "domain": "selected_workspace_root",
+        "roots": [
+          "fixtures/worktrees/a",
+          "fixtures/worktrees/b"
+        ],
+        "assertions": [
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/worktrees/a/lib/shared.ex",
+                "anchor": "qs:worktree-a-call",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/worktrees/a/lib/shared.ex",
+                "anchor": "qs:worktree-a-def",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            ],
+            "root": "fixtures/worktrees/a"
+          },
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/worktrees/b/lib/shared.ex",
+                "anchor": "qs:worktree-b-call",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/worktrees/b/lib/shared.ex",
+                "anchor": "qs:worktree-b-def",
+                "selectionText": "value",
+                "occurrence": 1
+              }
+            ],
+            "root": "fixtures/worktrees/b"
+          }
+        ],
+        "requiredLaterSemanticPhase": "P3",
+        "p1Assertion": "Workspace identities never share a document or cache key.",
+        "p3Assertion": "Each definition remains inside the selected root."
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Code.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-032",
+      "category": "offline_dependency_source",
+      "required_phase": "P4",
+      "files": [
+        "fixtures/offline_project/mix.exs",
+        "fixtures/offline_dependency/mix.exs",
+        "fixtures/offline_project/lib/offline.ex",
+        "fixtures/offline_dependency/lib/local_dependency.ex"
+      ],
+      "scenario": "Resolve a local dependency source while network and project execution are unavailable.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/definition",
+          "position": {
+            "file": "fixtures/offline_project/lib/offline.ex",
+            "anchor": "qs:offline-call",
+            "selectionText": "identity",
+            "occurrence": 1
+          }
+        },
+        "symbol": "QsLocalDependency.identity/1",
+        "targets": [
+          {
+            "file": "fixtures/offline_dependency/lib/local_dependency.ex",
+            "anchor": "qs:offline-dependency-def",
+            "selectionText": "identity",
+            "occurrence": 1
+          }
+        ],
+        "completeness": "complete",
+        "domain": "case_source_snapshot",
+        "projectRoot": "fixtures/offline_project",
+        "dependencyRoot": "fixtures/offline_dependency",
+        "mode": {
+          "network": false,
+          "projectExecution": false,
+          "worker": "absent",
+          "beamArtifacts": "absent"
+        },
+        "expectedCompilerLaunches": 0,
+        "expectedDependencyFetches": 0
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Code.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-033",
+      "category": "no_invented_type_error",
+      "required_phase": "P4",
+      "files": [
+        "fixtures/mix_project/lib/types.ex"
+      ],
+      "scenario": "Keep source-only diagnostics free from an invented type restriction.",
+      "expected": {
+        "classification": "supported_exact",
+        "polarity": "negative",
+        "outcome": "exact",
+        "query": {
+          "method": "diagnostic_assertion",
+          "file": "fixtures/mix_project/lib/types.ex"
+        },
+        "mode": {
+          "projectExecution": false,
+          "worker": "absent"
+        },
+        "expectedSyntaxDiagnostics": [],
+        "forbiddenDiagnostics": [
+          "invented_type_mismatch",
+          "unverified_compiler_success"
+        ],
+        "coverage": "syntax-only",
+        "compilerStatus": "not_run",
+        "validCall": {
+          "file": "fixtures/mix_project/lib/types.ex",
+          "anchor": "qs:any-type-call",
+          "selectionText": "accept",
+          "occurrence": 1
+        },
+        "declaredTarget": {
+          "file": "fixtures/mix_project/lib/types.ex",
+          "anchor": "qs:any-type-def",
+          "selectionText": "accept",
+          "occurrence": 1
+        }
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://elixir.hexdocs.pm/Kernel.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-034",
+      "category": "malformed_recovery",
+      "required_phase": "P2",
+      "files": [
+        "fixtures/plain/malformed.ex"
+      ],
+      "scenario": "Retain an intact declaration beside a malformed expression.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "query": {
+          "method": "textDocument/documentSymbol",
+          "file": "fixtures/plain/malformed.ex"
+        },
+        "requiredDeclarations": [
+          "QsFixtures.Malformed.intact/0"
+        ],
+        "requiredOrigin": {
+          "file": "fixtures/plain/malformed.ex",
+          "anchor": "qs:malformed-intact",
+          "selectionText": "intact",
+          "occurrence": 1
+        },
+        "syntaxDiagnostic": {
+          "required": true,
+          "near": {
+            "file": "fixtures/plain/malformed.ex",
+            "anchor": "qs:malformed-error",
+            "selectionText": "[1, 2",
+            "occurrence": 1
+          },
+          "coverage": "syntax-only"
+        },
+        "completeness": "partial",
+        "domain": "intact_declarations_outside_error_nodes",
+        "fabricatedScopesAllowed": false
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://github.com/elixir-lang/tree-sitter-elixir",
+          "https://elixir.hexdocs.pm/Code.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "FX-035",
+      "category": "template_source_mapping",
+      "required_phase": "P5",
+      "files": [
+        "fixtures/templates/example.heex",
+        "fixtures/mix_project/lib/math.ex",
+        "fixtures/templates/example.eex"
+      ],
+      "scenario": "Map HEEx and EEx expression queries back to their template source positions.",
+      "expected": {
+        "classification": "supported_exact",
+        "outcome": "exact",
+        "completeness": "complete",
+        "domain": "explicit_template_expressions",
+        "assertions": [
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/templates/example.heex",
+                "anchor": "qs:heex-call",
+                "selectionText": "plus",
+                "occurrence": 1
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/math.ex",
+                "anchor": "qs:math-plus-def",
+                "selectionText": "plus",
+                "occurrence": 1
+              }
+            ],
+            "sourceMapRequired": true
+          },
+          {
+            "query": {
+              "method": "textDocument/definition",
+              "position": {
+                "file": "fixtures/templates/example.eex",
+                "anchor": "qs:eex-call",
+                "selectionText": "plus",
+                "occurrence": 1
+              }
+            },
+            "targets": [
+              {
+                "file": "fixtures/mix_project/lib/math.ex",
+                "anchor": "qs:math-plus-def",
+                "selectionText": "plus",
+                "occurrence": 1
+              }
+            ],
+            "sourceMapRequired": true
+          }
+        ],
+        "encodings": [
+          "utf-16",
+          "utf-8"
+        ],
+        "templateDependencyRequiredForOracle": true,
+        "scaffoldCapability": false
+      },
+      "oracle": {
+        "method": "manual specification from language rules and source inspection",
+        "sources": [
+          "https://hexdocs.pm/phoenix_live_view/Phoenix.Component.html",
+          "https://elixir.hexdocs.pm/eex/EEx.html"
+        ],
+        "execution": "not_run",
+        "independent_review": "pending"
+      },
+      "status": "pending"
+    }
+  ]
+}

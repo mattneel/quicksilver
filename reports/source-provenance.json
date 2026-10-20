@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "evidence_class": "source-provenance",
+  "source_files": {
+    "Cargo.toml": "765fc8311523bae17094baa516fa90096cabd47c5cb398dcebda47e27a877e98",
+    "Cargo.lock": "2fe6dc419feebaf258503270fce81312d21c3d25fbfd45364772fb8258a0dfb6",
+    "rust-toolchain.toml": "638924b15afb3b6f88b83713e356162659987378c6731a2ea3403b90e31ae0eb",
+    "src/lib.rs": "4e41c9523d448930a4853c7e9cb554d3108566ed6ce79694dda2687d73d1f529",
+    "src/main.rs": "e544a48553d023e923a1765ec5bd1648c27b0aacaf911881b986bb262fdbd883",
+    "src/server.rs": "82f4ef9a8754c95e263c09e4ae6f4fc05d9ce9ecd36e590458f5a42379a399f7",
+    "src/syntax.rs": "51ba02f4c6501383fbe513333343088032783319c6c74917a3237ac27330773c",
+    "src/text.rs": "d9bb94ea75a7ff13bdaeb3c03f73ebcb26b2e87321a8fd2c60a97ec060ab71ce",
+    "src/transport.rs": "d9e7ebdb7662424195357e585255c6c52472cb30900dae46a320f5eec375d432",
+    "scripts/benchmark.py": "fde5bd6e1a947d6d0cc2aa334837b7f935cb80b4fbd870022621677a1416ffc2",
+    "scripts/lsp_client.py": "07cfa0556ba7b55df9285f66e12c8d978c15be227ba6f3cf61e56928abd273f8",
+    "scripts/lsp_smoke.py": "46949344b0de6edfd0ed1d2bde72a65f8f057ecace98168434d0bb4b93296613",
+    "scripts/task_status.py": "44c09fdcbdac5218b80dea7919c148e95114138e1d4acfae180d997f11fc624d",
+    "scripts/validate_kit.py": "73b564251144eb310d5296f348f59c641054882d14b8f580705aa1c2fedbc5c5",
+    "scripts/verify.py": "ddd506128a78b23f79e155c830d868df378218790d2a9f90c4320a1844cefc1a"
+  },
+  "aggregate_sha256": "bf8dbedeb014d5988f9954139ec75cba7beadc79c0b0c605bebe0e5c0d70999f",
+  "scope": "Pinned Cargo inputs, all scaffold Rust modules, and Python verification scripts. The kit manifest separately covers every archived file."
+}

@@ -1,0 +1,1164 @@
+{
+  "schema_version": 1,
+  "project": "Quicksilver",
+  "objective": "Deliver the complete Elixir language server vision with independent source intelligence and optional BEAM enrichment.",
+  "phases": [
+    {
+      "id": "P0",
+      "name": "Baseline and independent evidence"
+    },
+    {
+      "id": "P1",
+      "name": "Transport, documents, and project identity"
+    },
+    {
+      "id": "P2",
+      "name": "Incremental source intelligence"
+    },
+    {
+      "id": "P3",
+      "name": "Exact supported semantics and navigation"
+    },
+    {
+      "id": "P4",
+      "name": "Optional BEAM enrichment and diagnostics"
+    },
+    {
+      "id": "P5",
+      "name": "Completion, refactors, templates, and agent controls"
+    },
+    {
+      "id": "P6",
+      "name": "OMP verification and release gates"
+    }
+  ],
+  "allowed_statuses": [
+    "pending",
+    "in_progress",
+    "blocked",
+    "done"
+  ],
+  "completion_policy": {
+    "done_requires_all_acceptance": true,
+    "done_requires_evidence_paths": true,
+    "unavailable_is_not_passed": true,
+    "baseline_is_not_full_vision": true,
+    "public_publication_required": false,
+    "instructions": "Continue through all ready tasks. Record concrete blockers and complete unaffected work."
+  },
+  "tasks": [
+    {
+      "id": "QS-001",
+      "phase": "P0",
+      "title": "Verify the shipped scaffold",
+      "required": true,
+      "status": "pending",
+      "depends_on": [],
+      "deliverables": [
+        "reports/baseline-environment.md",
+        "reports/baseline-verification.json"
+      ],
+      "acceptance": [
+        "The pinned Rust toolchain and Python versions are recorded.",
+        "All Rust tests and the external protocol smoke pass in the harness environment.",
+        "The report names absent Elixir, OTP, or OMP tools without a substitute pass.",
+        "The feature matrix matches actual advertised capabilities.",
+        "The baseline benchmark remains labeled scaffold evidence."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-002",
+      "phase": "P0",
+      "title": "Create independent acceptance runners",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-001"
+      ],
+      "deliverables": [
+        "tests/acceptance/",
+        "scripts/semantic_suite.py",
+        "reports/fixture-oracles.md"
+      ],
+      "acceptance": [
+        "Every catalog case has a stable source anchor and an explicit oracle.",
+        "Supported exact cases and expected refusals have separate denominators.",
+        "The runner fails on a missing expected target or an extra incorrect target.",
+        "Compiler oracle tests use a real toolchain and retain its identity.",
+        "Unavailable oracle environments produce a blocked result, never a pass."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-003",
+      "phase": "P1",
+      "title": "Harden transport and lifecycle",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-001"
+      ],
+      "deliverables": [
+        "src/transport/",
+        "tests/acceptance/protocol/"
+      ],
+      "acceptance": [
+        "Frame limits apply before allocation and malformed headers have deterministic behavior.",
+        "Initialization, shutdown, exit, duplicate requests, and unknown methods follow the protocol contract.",
+        "Only framed protocol data appears on stdout.",
+        "Request cancellation and client disconnect release resources.",
+        "Fuzzed or fragmented frames cannot panic or cause unbounded allocation."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-004",
+      "phase": "P1",
+      "title": "Implement a versioned document store",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-003",
+        "QS-002"
+      ],
+      "deliverables": [
+        "src/documents/",
+        "tests/acceptance/documents/"
+      ],
+      "acceptance": [
+        "Full and incremental changes preserve the exact client text.",
+        "UTF-16, UTF-8, CRLF, combining characters, and non-BMP positions pass independent tests.",
+        "Obsolete versions never replace a current document.",
+        "Invalid edits leave the prior document intact and expose the failure.",
+        "Open overlays retain precedence over disk text until the defined close transition."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-005",
+      "phase": "P1",
+      "title": "Model projects and worktree identity",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-003",
+        "QS-002"
+      ],
+      "deliverables": [
+        "src/workspace/",
+        "tests/acceptance/workspaces/"
+      ],
+      "acceptance": [
+        "Plain source folders, Mix projects, umbrella roots, and workspace folders have explicit identity.",
+        "Two worktrees with different source or dependencies never share mutable state.",
+        "Symlink aliases do not duplicate one logical file or collapse different worktrees.",
+        "Case-sensitive and case-insensitive path behavior is tested on the relevant platforms.",
+        "A project scan excludes generated build trees and respects explicit include and exclude settings."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-006",
+      "phase": "P1",
+      "title": "Reconcile external file events",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-004",
+        "QS-005"
+      ],
+      "deliverables": [
+        "src/workspace/watch.rs",
+        "tests/acceptance/external_edits/"
+      ],
+      "acceptance": [
+        "OMP-style disk writes become visible through a tested synchronization path.",
+        "Open overlay precedence survives concurrent disk writes.",
+        "Create, delete, rename, atomic replacement, and watcher overflow trigger correct invalidation.",
+        "The implementation recovers from missed events through a bounded reconciliation mechanism.",
+        "A watcher never recursively indexes its own cache or build output."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-007",
+      "phase": "P2",
+      "title": "Implement incremental syntax updates",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-004",
+        "QS-002"
+      ],
+      "deliverables": [
+        "src/syntax/",
+        "tests/acceptance/syntax/",
+        "reports/incremental-parse.md"
+      ],
+      "acceptance": [
+        "Accepted changes update the prior tree through correct Tree-sitter edit coordinates.",
+        "Malformed edits preserve useful source structure with bounded work.",
+        "Quoted code, comments, and strings do not create false active declarations.",
+        "Instrumentation records changed bytes and parse work for repeated body edits.",
+        "A parser or grammar upgrade invalidates incompatible persisted syntax data."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-008",
+      "phase": "P2",
+      "title": "Build the source declaration index",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-005",
+        "QS-006",
+        "QS-007"
+      ],
+      "deliverables": [
+        "src/index/",
+        "tests/acceptance/index/"
+      ],
+      "acceptance": [
+        "Document and workspace symbols work without Mix or a PLT.",
+        "First useful file results do not wait for a complete workspace scan.",
+        "Incremental updates replace only affected file entries.",
+        "Deletes and renames remove stale entries.",
+        "Index readiness and coverage remain explicit during a partial initial scan."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-009",
+      "phase": "P2",
+      "title": "Persist and invalidate source caches",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-008"
+      ],
+      "deliverables": [
+        "src/cache/",
+        "tests/acceptance/cache/"
+      ],
+      "acceptance": [
+        "Cache keys include schema, grammar, project identity, configuration, and relevant content identity.",
+        "Atomic writes and corruption recovery preserve service availability.",
+        "A stale cache never overrides current open text.",
+        "Worktree and dependency changes invalidate the correct scope.",
+        "Unrelated source files retain reusable data after a small edit."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-010",
+      "phase": "P2",
+      "title": "Add a bounded incremental query scheduler",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-007",
+        "QS-008",
+        "QS-009"
+      ],
+      "deliverables": [
+        "src/analysis/",
+        "src/scheduler/",
+        "reports/query-engine-decision.md"
+      ],
+      "acceptance": [
+        "Semantic queries use explicit inputs and coherent immutable snapshots.",
+        "The Salsa choice or equivalent design has a recorded compatibility and latency comparison.",
+        "Cancellation removes obsolete work before it overwrites newer results.",
+        "Worker tasks cannot starve source requests.",
+        "Instrumentation proves selective invalidation after function-body edits.",
+        "Queues and concurrent jobs have bounded resource limits."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-011",
+      "phase": "P3",
+      "title": "Resolve modules and lexical scopes",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-008",
+        "QS-010",
+        "QS-002"
+      ],
+      "deliverables": [
+        "src/analysis/scopes.rs",
+        "src/analysis/modules.rs",
+        "tests/acceptance/resolution/"
+      ],
+      "acceptance": [
+        "Nested modules, aliases, imports, and requires follow documented scope rules.",
+        "Import only and except constraints produce exact supported targets.",
+        "Variables with the same name in different scopes remain distinct.",
+        "Quoted declarations remain inactive unless verified enrichment establishes their origin.",
+        "Ambiguous runtime module values produce explicit unsupported behavior."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-012",
+      "phase": "P3",
+      "title": "Resolve callable identity and arity",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-011"
+      ],
+      "deliverables": [
+        "src/analysis/callables.rs",
+        "tests/acceptance/callables/"
+      ],
+      "acceptance": [
+        "Function identity includes module and arity.",
+        "Defaults, pipe calls, captures, guards, and multi-clause functions resolve correctly.",
+        "Private functions never resolve as public remote exports.",
+        "Supported delegates preserve both declaration and delegated target relationships.",
+        "Operator-named functions and supported special forms have dedicated fixtures."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-013",
+      "phase": "P3",
+      "title": "Implement exact definitions and references",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-012",
+        "QS-006"
+      ],
+      "deliverables": [
+        "src/features/definition.rs",
+        "src/features/references.rs",
+        "tests/acceptance/navigation/"
+      ],
+      "acceptance": [
+        "Every supported positive fixture returns the complete expected target set.",
+        "Comments, strings, and same-spelling unrelated symbols do not create references.",
+        "Source requests succeed during a deliberately stalled compiler worker.",
+        "Locations use the negotiated position encoding.",
+        "Incomplete reference domains never produce a falsely complete empty array.",
+        "Range changes after external edits retain correct source identity."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-014",
+      "phase": "P3",
+      "title": "Expose source documentation and signatures",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-011",
+        "QS-012"
+      ],
+      "deliverables": [
+        "src/features/hover.rs",
+        "src/features/signature.rs",
+        "tests/acceptance/information/"
+      ],
+      "acceptance": [
+        "Hover links source declarations with their documentation and typespec facts.",
+        "Declared specs remain distinct from inferred or Dialyzer-derived facts.",
+        "Signature help handles active arguments and supported pipe or capture forms.",
+        "Missing documentation does not become invented documentation.",
+        "All source ranges and fallback behavior have independent fixtures."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-015",
+      "phase": "P3",
+      "title": "Add implementations and call hierarchy",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-013"
+      ],
+      "deliverables": [
+        "src/features/implementations.rs",
+        "src/features/call_hierarchy.rs"
+      ],
+      "acceptance": [
+        "Protocols and supported defimpl targets have explicit identities.",
+        "Behaviours and callback implementations resolve within the documented domain.",
+        "Call hierarchy includes only statically resolved calls.",
+        "Dynamic calls remain outside complete call-graph claims.",
+        "Workspace symbols support bounded, cancellable queries during index updates."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-016",
+      "phase": "P4",
+      "title": "Supervise an optional project worker",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-005",
+        "QS-003"
+      ],
+      "deliverables": [
+        "src/worker/",
+        "beam/",
+        "tests/acceptance/worker/"
+      ],
+      "acceptance": [
+        "Source-only mode starts no Elixir, Erlang, Mix, or Dialyzer process.",
+        "Enriched mode discovers an explicit supported Elixir and OTP pair.",
+        "The manager and worker use the versioned local protocol.",
+        "Worker startup, failure, cancellation, and restart have bounded deadlines.",
+        "The manager labels unsupported runtime pairs and preserves source mode.",
+        "The process boundary is not described as an OS sandbox."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-017",
+      "phase": "P4",
+      "title": "Coalesce project compilation",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-016",
+        "QS-006",
+        "QS-010"
+      ],
+      "deliverables": [
+        "beam/compile_worker/",
+        "tests/acceptance/compile/"
+      ],
+      "acceptance": [
+        "Repeated save events coalesce without an unbounded compile queue.",
+        "The worker uses isolated project build artifacts with correct runtime and dependency keys.",
+        "It never fetches dependencies automatically or launches the application server.",
+        "A failed build preserves source index availability.",
+        "Small edits do not force full dependency rebuilds.",
+        "Compiler jobs identify their input revision and cannot overwrite newer state."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-018",
+      "phase": "P4",
+      "title": "Import compiler and macro metadata",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-017",
+        "QS-014"
+      ],
+      "deliverables": [
+        "src/enrichment/",
+        "beam/metadata/",
+        "tests/acceptance/macros/"
+      ],
+      "acceptance": [
+        "Exports, docs, callbacks, and specs come from the supported compiler or BEAM metadata.",
+        "Generated functions retain provenance and a valid source relationship when available.",
+        "Project modules cannot collide with worker infrastructure modules.",
+        "Macro changes invalidate the appropriate enriched facts.",
+        "Source facts remain available when expansion fails or times out.",
+        "The implementation does not claim static parity for arbitrary macro execution."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-019",
+      "phase": "P4",
+      "title": "Merge and version diagnostics",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-017",
+        "QS-007",
+        "QS-010"
+      ],
+      "deliverables": [
+        "src/features/diagnostics.rs",
+        "tests/acceptance/diagnostics/"
+      ],
+      "acceptance": [
+        "Syntax and compiler diagnostics retain separate provenance and freshness.",
+        "Obsolete compiler diagnostics never replace newer source diagnostics.",
+        "Push versions and pull result IDs follow negotiated client capabilities.",
+        "A failed build or unavailable worker never reports a clean successful compile.",
+        "Cross-file invalidation handles deleted and renamed files.",
+        "Diagnostic waits remain independent from ordinary source navigation."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-020",
+      "phase": "P5",
+      "title": "Complete contextual completion and semantic tokens",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-012",
+        "QS-014",
+        "QS-018"
+      ],
+      "deliverables": [
+        "src/features/completion.rs",
+        "tests/acceptance/completion/",
+        "src/features/semantic_tokens.rs",
+        "tests/acceptance/semantic_tokens/"
+      ],
+      "acceptance": [
+        "Local variables, aliases, imports, modules, members, and callbacks use the resolver.",
+        "CompletionList.isIncomplete is accurate when more analysis can change the result.",
+        "Text edits use valid ranges and compatible document revisions.",
+        "Source completions remain available without enrichment.",
+        "Generated members appear only when verified metadata supports them.",
+        "Semantic tokens classify supported syntax and resolved identities through a stable advertised legend.",
+        "Token ranges use the negotiated encoding and never overlap or exceed the source document.",
+        "Full token results belong to one document revision. Delta support requires separate equivalent-result tests."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-021",
+      "phase": "P5",
+      "title": "Implement conservative rename",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-013",
+        "QS-004"
+      ],
+      "deliverables": [
+        "src/features/rename.rs",
+        "tests/acceptance/rename/"
+      ],
+      "acceptance": [
+        "Local rename requires complete current lexical scope evidence.",
+        "Project rename requires complete supported reference coverage.",
+        "Open-document edits carry source versions, and client acceptance tests reject mismatched versions.",
+        "Preview changes exactly the expected symbols and no comments or unrelated identifiers.",
+        "Ambiguous macro or dynamic references produce a specific refusal.",
+        "Default-arity groups and multi-clause functions preserve identity.",
+        "Closed-file and mixed edits require an explicit client content-hash precondition contract or a strict refusal.",
+        "Cross-file acceptance tests cover intervening disk edits and the documented limits of client transaction support."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-022",
+      "phase": "P5",
+      "title": "Add formatting and safe code actions",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-014",
+        "QS-019",
+        "QS-021"
+      ],
+      "deliverables": [
+        "src/features/formatting.rs",
+        "src/features/code_actions.rs"
+      ],
+      "acceptance": [
+        "Formatting uses the current document snapshot and the explicit formatter configuration.",
+        "Formatter execution has a deadline and never blocks source navigation.",
+        "Code actions have exact before-and-after fixtures.",
+        "Code actions retain their source preconditions, and client acceptance tests reject obsolete edits.",
+        "Only verified action kinds appear in capabilities.",
+        "Standard formatting TextEdit arrays remain unversioned. Strict automatic application requires a verified client content-hash check.",
+        "Code-action and formatting tests include concurrent open-document changes and external disk edits."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-023",
+      "phase": "P4",
+      "title": "Add explicit optional deep analysis",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-017",
+        "QS-019"
+      ],
+      "deliverables": [
+        "src/worker/deep_analysis.rs",
+        "tests/acceptance/deep_analysis/"
+      ],
+      "acceptance": [
+        "Dialyzer runs only after an explicit configured job request.",
+        "PLT identity includes the required runtime and dependency facts.",
+        "An ordinary source edit never forces a full PLT build as a query prerequisite.",
+        "Canceled and failed jobs retain honest status and bounded resource use.",
+        "No deep-analysis result changes declared typespec facts into inferred guarantees.",
+        "This optional feature remains independently disabled by default."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-024",
+      "phase": "P5",
+      "title": "Support structural features and template source mapping",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-007",
+        "QS-013",
+        "QS-019"
+      ],
+      "deliverables": [
+        "src/templates/",
+        "tests/acceptance/templates/",
+        "src/features/selection.rs",
+        "src/features/folding.rs",
+        "tests/acceptance/structure/"
+      ],
+      "acceptance": [
+        "Dedicated template syntax and embedded Elixir mappings preserve exact positions.",
+        "Unicode and multiline template fixtures pass definition and diagnostic tests.",
+        "Unsupported framework-specific expansion has explicit behavior.",
+        "Template extensions appear in the client configuration only after their gates pass.",
+        "Template edits do not invalidate unrelated Elixir modules.",
+        "Selection ranges form ordered parent ranges that contain the requested position and remain within document bounds.",
+        "Folding ranges match Elixir and template syntax, respect client range limits, and recover after malformed edits.",
+        "Structural feature fixtures cover UTF-8, UTF-16, CRLF, empty files, and nested constructs."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-025",
+      "phase": "P5",
+      "title": "Expose negotiated agent analysis controls",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-010",
+        "QS-013",
+        "QS-019",
+        "QS-016"
+      ],
+      "deliverables": [
+        "src/extensions/",
+        "tests/acceptance/extensions/"
+      ],
+      "acceptance": [
+        "Versioned status distinguishes source index, worker, and diagnostic states.",
+        "Optional batch requests use one coherent snapshot and bounded output.",
+        "The source synchronization barrier reconciles external edits under the documented ownership rule.",
+        "Standard Location and reference arrays contain no invented completeness fields.",
+        "Unsupported custom protocol versions fail explicitly without breaking standard LSP."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-026",
+      "phase": "P6",
+      "title": "Complete configuration and operations",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-009",
+        "QS-016",
+        "QS-025"
+      ],
+      "deliverables": [
+        "docs/CONFIGURATION.md",
+        "docs/OPERATIONS.md",
+        "src/config/"
+      ],
+      "acceptance": [
+        "Every documented setting maps to implemented behavior and a validation test.",
+        "Default logs omit source text and secrets.",
+        "Cache recovery affects only the selected Quicksilver project cache.",
+        "Worker and source failures have actionable status and bounded recovery.",
+        "Configuration reload preserves project identity and document ownership."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-027",
+      "phase": "P6",
+      "title": "Verify the actual OMP workflow",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-013",
+        "QS-019",
+        "QS-025",
+        "QS-026"
+      ],
+      "deliverables": [
+        "scripts/omp_e2e.py",
+        "reports/omp-integration.md",
+        "examples/omp/quicksilver.lsp.json"
+      ],
+      "acceptance": [
+        "The report identifies the installed OMP version and effective LSP configuration.",
+        "The evaluated project selects Quicksilver and explicitly disables both elixirls and expert.",
+        "The client launches a prebuilt binary rather than cargo run.",
+        "Definitions and references remain useful through rapid disk edits and a stalled worker.",
+        "Single-file and workspace diagnostics have honest observed behavior.",
+        "The adapter preserves semantic errors and freshness instead of converting them to success."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-028",
+      "phase": "P6",
+      "title": "Execute semantic and runtime coverage",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-015",
+        "QS-018",
+        "QS-019",
+        "QS-020",
+        "QS-021",
+        "QS-022",
+        "QS-023",
+        "QS-024"
+      ],
+      "deliverables": [
+        "reports/semantic-coverage.json",
+        "reports/runtime-matrix.md",
+        "reports/requirements-coverage.json"
+      ],
+      "acceptance": [
+        "Every mandatory catalog case executes with its declared oracle.",
+        "Exact supported cases achieve all expected targets without false positives.",
+        "Refusal cases remain separate from supported correctness counts.",
+        "Supported Elixir and OTP pairs execute real compiler fixtures.",
+        "The final feature matrix includes every tested capability and deliberate limitation.",
+        "A coverage matrix maps every mandatory SEM and PRO behavior to executed evidence or an explicit release blocker.",
+        "The corpus expands beyond the seed with direct variable, alias, and import hygiene cases and pinned real project cases."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-029",
+      "phase": "P6",
+      "title": "Measure production latency and invalidation",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-010",
+        "QS-013",
+        "QS-017",
+        "QS-027"
+      ],
+      "deliverables": [
+        "scripts/benchmark_project.py",
+        "reports/performance/"
+      ],
+      "acceptance": [
+        "Small, medium, and large corpora have reproducible manifests.",
+        "Cold, warm, worker-active, and repeated-edit scenarios retain raw samples.",
+        "All required percentile budgets pass or remain explicit release blockers.",
+        "Failures, timeouts, and unattempted work remain in the denominator report.",
+        "Measurements identify hardware, source revision, binary hash, and cache state.",
+        "Instrumentation proves that body edits do not repeatedly rebuild all dependencies or the PLT."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-030",
+      "phase": "P6",
+      "title": "Prove recovery and resource bounds",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-009",
+        "QS-017",
+        "QS-019",
+        "QS-025"
+      ],
+      "deliverables": [
+        "tests/acceptance/soak/",
+        "reports/reliability.md"
+      ],
+      "acceptance": [
+        "At least 10000 edit cycles preserve freshness and stable resource behavior.",
+        "Worker crashes and compile failures do not kill the source service.",
+        "Memory and process counts remain within the documented acceptance bounds.",
+        "Cache corruption and watcher overflow recover through tested paths.",
+        "Canceled requests and client disconnects leave no orphan worker.",
+        "The test covers repeated worktree switches and dependency changes."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-031",
+      "phase": "P6",
+      "title": "Build and verify release packages",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-026",
+        "QS-028",
+        "QS-029",
+        "QS-030"
+      ],
+      "deliverables": [
+        ".github/workflows/ci.yml",
+        "scripts/package_release.py",
+        "reports/platform-matrix.md",
+        "reports/release-install.md"
+      ],
+      "acceptance": [
+        "Linux x86_64 and macOS arm64 execute the supported source feature suite.",
+        "Unexecuted platforms remain experimental rather than supported.",
+        "Release archives install and run from clean directories.",
+        "Source archives include lockfiles, licenses, and reproducible verification commands.",
+        "Checksums and dependency inventory accompany each candidate package.",
+        "No registry or external release is published without owner authorization."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    },
+    {
+      "id": "QS-032",
+      "phase": "P6",
+      "title": "Complete independent release review",
+      "required": true,
+      "status": "pending",
+      "depends_on": [
+        "QS-001",
+        "QS-002",
+        "QS-003",
+        "QS-004",
+        "QS-005",
+        "QS-006",
+        "QS-007",
+        "QS-008",
+        "QS-009",
+        "QS-010",
+        "QS-011",
+        "QS-012",
+        "QS-013",
+        "QS-014",
+        "QS-015",
+        "QS-016",
+        "QS-017",
+        "QS-018",
+        "QS-019",
+        "QS-020",
+        "QS-021",
+        "QS-022",
+        "QS-023",
+        "QS-024",
+        "QS-025",
+        "QS-026",
+        "QS-027",
+        "QS-028",
+        "QS-029",
+        "QS-030",
+        "QS-031"
+      ],
+      "deliverables": [
+        "reports/FINAL_REPORT.md",
+        "reports/INDEPENDENT_REVIEW.md"
+      ],
+      "acceptance": [
+        "An independent reviewer verifies requirements against code and evidence.",
+        "Every required task has current passing acceptance evidence.",
+        "The final report states capability coverage and deliberate limitations.",
+        "The final report includes semantic, latency, resource, OMP, and platform evidence.",
+        "No unavailable gate is reported as a pass.",
+        "The release validator passes without weakened acceptance conditions."
+      ],
+      "verify": {
+        "baseline_commands": [
+          "cargo test --locked",
+          "python3 scripts/verify.py"
+        ],
+        "additional_requirement": "Execute task-specific acceptance tests and preserve the exact commands and results in the evidence report."
+      },
+      "evidence": [],
+      "owner": null,
+      "blocker": null
+    }
+  ]
+}

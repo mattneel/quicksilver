@@ -1,0 +1,2 @@
+<p>Olá 🧪: <%= QsFixtures.Math.plus(1, 2) %></p> <%# qs:eex-call %>
+

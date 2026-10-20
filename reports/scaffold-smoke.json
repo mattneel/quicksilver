@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "evidence_class": "scaffold",
+  "status": "passed",
+  "server_version": "quicksilver 0.0.1 (source-only bootstrap)",
+  "binary_sha256": "e28e38efc1ed3b42078e23e3cde1cc302cdbd00cef0eb8d2b069ddc526f597c7",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "duration_seconds": 0.123,
+  "passed_groups": 16,
+  "groups": [
+    "CLI version",
+    "utf-16: lifecycle and truthful capabilities",
+    "utf-16: CRLF and exact declaration ranges",
+    "utf-16: non-BMP character before a symbol",
+    "utf-16: malformed edit and recovery",
+    "utf-16: stale edit rejection",
+    "utf-16: status, document close, and shutdown",
+    "utf-8: lifecycle and truthful capabilities",
+    "utf-8: CRLF and exact declaration ranges",
+    "utf-8: non-BMP character before a symbol",
+    "utf-8: malformed edit and recovery",
+    "utf-8: stale edit rejection",
+    "utf-8: status, document close, and shutdown",
+    "flat SymbolInformation compatibility",
+    "fragmented headers, bodies, and UTF-8 bytes",
+    "exit without shutdown"
+  ],
+  "excluded": [
+    "semantic resolution",
+    "BEAM worker",
+    "OMP integration",
+    "release performance"
+  ]
+}

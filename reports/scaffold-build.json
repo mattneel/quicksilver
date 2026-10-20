@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "evidence_class": "scaffold",
+  "status": "passed",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "python": "3.12.14",
+  "unavailable_tools": [
+    "elixir",
+    "erl",
+    "mix",
+    "omp",
+    "bun"
+  ],
+  "commands": [
+    {
+      "command": [
+        "rustc",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "rustc 1.99.1 (58cf8f9c3 2026-10-13)\n",
+      "stderr": "",
+      "duration_seconds": 0.015
+    },
+    {
+      "command": [
+        "cargo",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "cargo 1.99.1 (5f94df478 2026-08-27)\n",
+      "stderr": "",
+      "duration_seconds": 0.008
+    },
+    {
+      "command": [
+        "cargo",
+        "build",
+        "--release",
+        "--locked",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "    Finished `release` profile [optimized] target(s) in 0.02s\n",
+      "duration_seconds": 0.034
+    }
+  ]
+}

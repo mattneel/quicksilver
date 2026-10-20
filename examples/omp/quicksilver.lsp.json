@@ -1,0 +1,17 @@
+{
+  "servers": {
+    "elixirls": {
+      "disabled": true
+    },
+    "expert": {
+      "disabled": true
+    },
+    "quicksilver": {
+      "command": "/ABSOLUTE/PATH/TO/quicksilver/target/release/quicksilver",
+      "args": ["--stdio"],
+      "fileTypes": [".ex", ".exs"],
+      "languageId": "elixir",
+      "rootMarkers": ["mix.exs", "mix.lock"]
+    }
+  }
+}

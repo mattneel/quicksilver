@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "evidence_class": "structure",
+  "mode": "kit",
+  "status": "passed",
+  "task_count": 32,
+  "fixture_count": 35,
+  "fixture_anchor_count": 86,
+  "failures": []
+}

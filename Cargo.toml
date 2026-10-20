@@ -1,0 +1,27 @@
+[package]
+name = "quicksilver"
+version = "0.0.1"
+edition = "2021"
+description = "An Elixir language server with a source-first analysis architecture"
+license = "MIT"
+publish = false
+
+[dependencies]
+crossbeam-channel = "=0.5.17"
+lsp-server = "=0.7.9"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tree-sitter = "=0.25.10"
+tree-sitter-elixir = "=0.3.5"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+dbg_macro = "deny"
+todo = "deny"
+

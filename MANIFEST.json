@@ -1,0 +1,431 @@
+{
+  "schema_version": 1,
+  "project": "Quicksilver",
+  "artifact": "implementation kit",
+  "archive_layout": "root files for extraction into the project directory",
+  "prepared_date_utc": "2026-10-20",
+  "manifest_scope": "Every archive file except MANIFEST.json itself.",
+  "file_count": 84,
+  "files": [
+    {
+      "path": ".editorconfig",
+      "size_bytes": 196,
+      "sha256": "9824613a99f904a11f3c09c4e05d6704937952317295148b2e9b3118674cf689"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size_bytes": 538,
+      "sha256": "8596a37dfc58cce80092f7f51b9ba645c21231dff50981d0f93a777a77b41370"
+    },
+    {
+      "path": ".gitignore",
+      "size_bytes": 134,
+      "sha256": "8d3ad2d7e8f3bcb5a15a82fdf80088772ed0ce2c6441ad6273550f998b1fe0c9"
+    },
+    {
+      "path": "AGENTS.md",
+      "size_bytes": 9025,
+      "sha256": "5535430ed5d302a1fffcc8b1612a0f70642976668156d11a6849931764b6ddcd"
+    },
+    {
+      "path": "Cargo.lock",
+      "size_bytes": 7060,
+      "sha256": "2fe6dc419feebaf258503270fce81312d21c3d25fbfd45364772fb8258a0dfb6"
+    },
+    {
+      "path": "Cargo.toml",
+      "size_bytes": 512,
+      "sha256": "765fc8311523bae17094baa516fa90096cabd47c5cb398dcebda47e27a877e98"
+    },
+    {
+      "path": "LICENSE",
+      "size_bytes": 1082,
+      "sha256": "2fb563fd7e73f2c481c7ab82a883ce231c1a8f3694f8ae886f5cd898291fc896"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 4625,
+      "sha256": "2f65d714d2e3cdff2fd59e41c9233f8d2fdd1ec1136656026473a3fd048d13a5"
+    },
+    {
+      "path": "START_HERE.md",
+      "size_bytes": 3951,
+      "sha256": "b3825532a33adda025341d9a39f76079e73109bf6ea98dcf03b144f5156b246d"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "size_bytes": 21191,
+      "sha256": "780b286e3a18d8e59046097a7b708413778172a023b82813fa4c5a7315cd5347"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "size_bytes": 17423,
+      "sha256": "014a3f258bb8559a476efee6da2c215e28d11b6caf1f038e3a396dd293c56bbc"
+    },
+    {
+      "path": "docs/ELIXIR_SEMANTICS.md",
+      "size_bytes": 19662,
+      "sha256": "05263e421343f1f3b58bd8fcac8476efa7c8eec82c80eec26b25a0bf30993c9c"
+    },
+    {
+      "path": "docs/FEATURE_MATRIX.md",
+      "size_bytes": 7517,
+      "sha256": "348d795821c7b02867e4c77e8c944217ebfc88f476e665d151350da8e13e54fe"
+    },
+    {
+      "path": "docs/IMPLEMENTATION_PLAN.md",
+      "size_bytes": 7109,
+      "sha256": "66aed1b053f5fe3c770c5479fca2d238893ffcf6303d7dcf7c9ac59a7a19f0ca"
+    },
+    {
+      "path": "docs/OMP_INTEGRATION.md",
+      "size_bytes": 6959,
+      "sha256": "879fe329323f1adc099fa4fa6ba854b056c006aed3e02e172053133c0cd442bf"
+    },
+    {
+      "path": "docs/OPERATIONS.md",
+      "size_bytes": 4018,
+      "sha256": "c0e434f515399c62db00b72230e4418cab46825f0eca6b34c15fa56f1bae05f7"
+    },
+    {
+      "path": "docs/PERFORMANCE.md",
+      "size_bytes": 9304,
+      "sha256": "bd2f50d7dc7c8fec8cc91bcd437cb21588bcd60ac567f26b0224c21ca25e1985"
+    },
+    {
+      "path": "docs/PROTOCOL.md",
+      "size_bytes": 32622,
+      "sha256": "8b53ae6fb976923bc96e3101eb50e4e57e8ff185141dfdee07d88587c69a6bd5"
+    },
+    {
+      "path": "docs/QUALITY_GATES.md",
+      "size_bytes": 11310,
+      "sha256": "0d757abc2fc59addc93c8eb5c929dd2af516006879cbf980c88415b92721aa7c"
+    },
+    {
+      "path": "docs/RESEARCH.md",
+      "size_bytes": 5980,
+      "sha256": "547489a81f61e07e215998b366fc800d40fe4a61a33638cf8377d45969c24608"
+    },
+    {
+      "path": "docs/VISION.md",
+      "size_bytes": 8683,
+      "sha256": "f3f2a2baad0e7a3111a1808074df828a669bbdaa2378c8f1d60aafd1414409e7"
+    },
+    {
+      "path": "examples/omp/quicksilver.lsp.json",
+      "size_bytes": 359,
+      "sha256": "6fc84171a8a1ec576666228c9a52264e286f5638da75d6a35e373bc52105a06c"
+    },
+    {
+      "path": "fixtures/README.md",
+      "size_bytes": 6267,
+      "sha256": "a646647bb275af382a70ab36172f593b716205b28e15b3b75bf2b2520176442b"
+    },
+    {
+      "path": "fixtures/cases.json",
+      "size_bytes": 56974,
+      "sha256": "13c5557b800ac5cc1f8f565fe89db9f344fcfe84e2168263596928ad4a505368"
+    },
+    {
+      "path": "fixtures/mix_project/lib/accounts.ex",
+      "size_bytes": 206,
+      "sha256": "95997cc30a354a8af46918b7e87659443664cfb387695ed9f6b6d484157e6698"
+    },
+    {
+      "path": "fixtures/mix_project/lib/aliases.ex",
+      "size_bytes": 540,
+      "sha256": "1dfdaa3726d0b195826a5036b7664265aa9c92f2aec760143f2c634ed48982b7"
+    },
+    {
+      "path": "fixtures/mix_project/lib/behaviors.ex",
+      "size_bytes": 244,
+      "sha256": "5b81145c70aab794d60a8a1831bdbdb657136b177d938219f21b3106f8c3e1ee"
+    },
+    {
+      "path": "fixtures/mix_project/lib/delegates.ex",
+      "size_bytes": 227,
+      "sha256": "1b3745754d6d9c5fd9854945b1d147743a83c682669e40b7b4c72cf3b07f9d5a"
+    },
+    {
+      "path": "fixtures/mix_project/lib/dynamic.ex",
+      "size_bytes": 323,
+      "sha256": "b1171225a93837cfee6d2788bbdab127c67f7bc83681ca86e32c26d034b454f9"
+    },
+    {
+      "path": "fixtures/mix_project/lib/functions.ex",
+      "size_bytes": 762,
+      "sha256": "dd0152784e3e975fd0f62ddad4fea3f0721fd983a3184d7491183b22d663d730"
+    },
+    {
+      "path": "fixtures/mix_project/lib/generated.ex",
+      "size_bytes": 129,
+      "sha256": "ca2540bafb745d1d5faf2dab3014d6037a26c0fe64de1017225f9c18584e3d56"
+    },
+    {
+      "path": "fixtures/mix_project/lib/imports.ex",
+      "size_bytes": 476,
+      "sha256": "0bbf30d777cd853a1f8de4bacb6ee6ba650d69c86496723c005035c633005ee6"
+    },
+    {
+      "path": "fixtures/mix_project/lib/maker.ex",
+      "size_bytes": 172,
+      "sha256": "531c6e1423ccf060f1c5a3d5b44db44935dcab654418cfecebe31e0e260ca99d"
+    },
+    {
+      "path": "fixtures/mix_project/lib/math.ex",
+      "size_bytes": 158,
+      "sha256": "4a70c03958c2b5ad803cf2c62a4b3f7fd917888074cf77d57eee10b788812dd2"
+    },
+    {
+      "path": "fixtures/mix_project/lib/protocols.ex",
+      "size_bytes": 317,
+      "sha256": "db742c536dda46bc69968b341dd44cf325d711b7b9ff9e00ed2dd933d9afa95f"
+    },
+    {
+      "path": "fixtures/mix_project/lib/quoted.ex",
+      "size_bytes": 203,
+      "sha256": "b8d1f5523cc7566834e9fcbd1bd1bf94dd86056cef38d5cb89c6e6398f148791"
+    },
+    {
+      "path": "fixtures/mix_project/lib/reference_noise.ex",
+      "size_bytes": 504,
+      "sha256": "f01191491281edc9ccec34356f425e5783a3f8fdab2bc57980aa9eba10de6348"
+    },
+    {
+      "path": "fixtures/mix_project/lib/types.ex",
+      "size_bytes": 194,
+      "sha256": "dc1816d3b825fe03031471a483c41fdaa52592b4602f7ef5650ebbdf474926ce"
+    },
+    {
+      "path": "fixtures/mix_project/lib/variables.ex",
+      "size_bytes": 700,
+      "sha256": "b1f09eee5dfa618dbb3dc9ad44e8b08958e1a28dc66cd2699a8b02a343a2acc0"
+    },
+    {
+      "path": "fixtures/mix_project/mix.exs",
+      "size_bytes": 210,
+      "sha256": "f08305db17e4bf1536cff0a484d84d4a6bf6870599566ba1e7016739bce3436f"
+    },
+    {
+      "path": "fixtures/offline_dependency/lib/local_dependency.ex",
+      "size_bytes": 97,
+      "sha256": "b86a8eae374b39e576daa8f9751d12cbb1d68c48812cf61ca733b9c86f2bac72"
+    },
+    {
+      "path": "fixtures/offline_dependency/mix.exs",
+      "size_bytes": 166,
+      "sha256": "1e1abedd163434143936f38b4822bb801a2853cb1f8b80a40435e996e3be14ba"
+    },
+    {
+      "path": "fixtures/offline_project/lib/offline.ex",
+      "size_bytes": 102,
+      "sha256": "fc7fffb842e80b8f313ce8a7eb6e38b8ba98e0cf505c13ec553e33e45be9a5d3"
+    },
+    {
+      "path": "fixtures/offline_project/mix.exs",
+      "size_bytes": 236,
+      "sha256": "fe15d3242b5ee3b55724b472dfd04ab80ae9a5c596703acb25e43d5e4d7bd330"
+    },
+    {
+      "path": "fixtures/plain/crlf.ex",
+      "size_bytes": 102,
+      "sha256": "e9aa001ec49a18af8685e2fd12f8ba69e266e2e1e89748aaa84ce4266d93db09"
+    },
+    {
+      "path": "fixtures/plain/malformed.ex",
+      "size_bytes": 141,
+      "sha256": "54464782e3b9e8ef60f52c43eeeca8993b0038889df8d441d31494631a9d9056"
+    },
+    {
+      "path": "fixtures/plain/unicode.ex",
+      "size_bytes": 113,
+      "sha256": "55405b3d015590756ddc9e2ad8d2937873fb46ceb63b8fe77ecd28ac7cbb456a"
+    },
+    {
+      "path": "fixtures/scenarios/buffer.ex",
+      "size_bytes": 87,
+      "sha256": "5e4ed90fbe30b69d0c42f0189843e3e04b7d3b7fcc0f1994978ceee907543b76"
+    },
+    {
+      "path": "fixtures/scenarios/disk_after.ex",
+      "size_bytes": 94,
+      "sha256": "a9a37663a7ac0f594ab2e2aa3be4ffb4a6482357b631ea640afc1e987e09d70a"
+    },
+    {
+      "path": "fixtures/scenarios/disk_before.ex",
+      "size_bytes": 97,
+      "sha256": "363660de1043fc98729a5c9d0f5e85e9a0b50c408f13bd8bb964471fa7f1a121"
+    },
+    {
+      "path": "fixtures/templates/example.eex",
+      "size_bytes": 72,
+      "sha256": "b962c8ae84188f647474cebd04759cb4384c2dedc7c1e4f2f49132fb46f5c32d"
+    },
+    {
+      "path": "fixtures/templates/example.heex",
+      "size_bytes": 70,
+      "sha256": "c14bf075774d85b8ead64f326ded0420145811da8efe788d6441f838c7e9411e"
+    },
+    {
+      "path": "fixtures/worktrees/a/lib/shared.ex",
+      "size_bytes": 134,
+      "sha256": "475ac2187b4fe52fe6356be657ef8271369847f0ab9b20c4d84821ad68878a1d"
+    },
+    {
+      "path": "fixtures/worktrees/a/mix.exs",
+      "size_bytes": 154,
+      "sha256": "c6fa1b7a471dd137b9624f1548920608aae06ece76f7b557f409492f03b8e216"
+    },
+    {
+      "path": "fixtures/worktrees/b/lib/shared.ex",
+      "size_bytes": 134,
+      "sha256": "5219bc8c8a9b7377c31c43db7f2e0f9f1eca055c5e4179cdc8b2cae11966f3fd"
+    },
+    {
+      "path": "fixtures/worktrees/b/mix.exs",
+      "size_bytes": 154,
+      "sha256": "8f97ade6a530448dd0fa9e7ab359f4f787f5e9850962791283dafb57daca636b"
+    },
+    {
+      "path": "planning/PROGRESS.md",
+      "size_bytes": 1003,
+      "sha256": "de4d5c2051fed3ef03ddbe706794ee5f22d9701c0d242f683594194760d627e3"
+    },
+    {
+      "path": "planning/tasks.json",
+      "size_bytes": 41199,
+      "sha256": "671ad99a409336b6146c82c114f0ddfc660e29ecf74a69f0f44b189b54cbda03"
+    },
+    {
+      "path": "prompts/IMPLEMENT.md",
+      "size_bytes": 1920,
+      "sha256": "e7a94adb0805f2893d6416f554c26c6836b18a17f1cd49837c8da11e1a2224e3"
+    },
+    {
+      "path": "prompts/RESUME.md",
+      "size_bytes": 673,
+      "sha256": "fd9f2773e41cf92a6146530a11311222275d839e8aa8d7686bbdc162f4e0a625"
+    },
+    {
+      "path": "prompts/REVIEW.md",
+      "size_bytes": 1028,
+      "sha256": "4d140f9d3e03bc76613ad174b3321531c5b2e2f3c9c7dc18750240ceb9569bed"
+    },
+    {
+      "path": "reports/KIT_REVIEW.md",
+      "size_bytes": 3747,
+      "sha256": "86244c2ea2713b5e3dd7a1cf5daf7b128f46566d62f989fe12ed2f546cf39e61"
+    },
+    {
+      "path": "reports/KIT_VERIFICATION.md",
+      "size_bytes": 7203,
+      "sha256": "36002ee7747d5edd3f1adee4bc6f20438c1805a4c0fa6b713fbbda2bc45d3927"
+    },
+    {
+      "path": "reports/kit-structure.json",
+      "size_bytes": 189,
+      "sha256": "eb773982e2863ec68fc4cb92467c6617940d3518a409871233e0dd44ca3ebac1"
+    },
+    {
+      "path": "reports/release-guard.json",
+      "size_bytes": 1875,
+      "sha256": "40901c71da1df647970a98c02e9a0e52616b148b2d3d69ae8b8a7ac239f7460d"
+    },
+    {
+      "path": "reports/scaffold-benchmark.json",
+      "size_bytes": 13218,
+      "sha256": "6a374daa99aaf7eb6e8f42cd0455a65a7afd498c4de5a3df413a15d23c4df2f7"
+    },
+    {
+      "path": "reports/scaffold-build.json",
+      "size_bytes": 974,
+      "sha256": "79ee22ef678a0c09d6a69bca54cd61a7dfced105faeaa4d2cb1f700dec9f77c7"
+    },
+    {
+      "path": "reports/scaffold-smoke.json",
+      "size_bytes": 1191,
+      "sha256": "1162e62c618f7483e71f904d07d04e58436d255ccbf5b026a4453208a773664f"
+    },
+    {
+      "path": "reports/scaffold-verification.json",
+      "size_bytes": 7364,
+      "sha256": "18003dc857da76ca5ba6cefd2dba69aeacf01081c70ec7b6b4fad91d543861f4"
+    },
+    {
+      "path": "reports/source-provenance.json",
+      "size_bytes": 1708,
+      "sha256": "2a83b4d91c2a59fcd681f294e2f3bedee57ac99ea89add92c4129148e631c844"
+    },
+    {
+      "path": "rust-toolchain.toml",
+      "size_bytes": 87,
+      "sha256": "638924b15afb3b6f88b83713e356162659987378c6731a2ea3403b90e31ae0eb"
+    },
+    {
+      "path": "rustfmt.toml",
+      "size_bytes": 34,
+      "sha256": "e83eeaf80e62171de248fb1f989d8dab80ef8a640bf4a2a917e9991550aa7434"
+    },
+    {
+      "path": "scripts/benchmark.py",
+      "size_bytes": 5561,
+      "sha256": "fde5bd6e1a947d6d0cc2aa334837b7f935cb80b4fbd870022621677a1416ffc2"
+    },
+    {
+      "path": "scripts/lsp_client.py",
+      "size_bytes": 10783,
+      "sha256": "07cfa0556ba7b55df9285f66e12c8d978c15be227ba6f3cf61e56928abd273f8"
+    },
+    {
+      "path": "scripts/lsp_smoke.py",
+      "size_bytes": 10448,
+      "sha256": "46949344b0de6edfd0ed1d2bde72a65f8f057ecace98168434d0bb4b93296613"
+    },
+    {
+      "path": "scripts/task_status.py",
+      "size_bytes": 1426,
+      "sha256": "44c09fdcbdac5218b80dea7919c148e95114138e1d4acfae180d997f11fc624d"
+    },
+    {
+      "path": "scripts/validate_kit.py",
+      "size_bytes": 8479,
+      "sha256": "73b564251144eb310d5296f348f59c641054882d14b8f580705aa1c2fedbc5c5"
+    },
+    {
+      "path": "scripts/verify.py",
+      "size_bytes": 2718,
+      "sha256": "ddd506128a78b23f79e155c830d868df378218790d2a9f90c4320a1844cefc1a"
+    },
+    {
+      "path": "src/lib.rs",
+      "size_bytes": 206,
+      "sha256": "4e41c9523d448930a4853c7e9cb554d3108566ed6ce79694dda2687d73d1f529"
+    },
+    {
+      "path": "src/main.rs",
+      "size_bytes": 1507,
+      "sha256": "e544a48553d023e923a1765ec5bd1648c27b0aacaf911881b986bb262fdbd883"
+    },
+    {
+      "path": "src/server.rs",
+      "size_bytes": 14172,
+      "sha256": "82f4ef9a8754c95e263c09e4ae6f4fc05d9ce9ecd36e590458f5a42379a399f7"
+    },
+    {
+      "path": "src/syntax.rs",
+      "size_bytes": 13521,
+      "sha256": "51ba02f4c6501383fbe513333343088032783319c6c74917a3237ac27330773c"
+    },
+    {
+      "path": "src/text.rs",
+      "size_bytes": 7147,
+      "sha256": "d9bb94ea75a7ff13bdaeb3c03f73ebcb26b2e87321a8fd2c60a97ec060ab71ce"
+    },
+    {
+      "path": "src/transport.rs",
+      "size_bytes": 7484,
+      "sha256": "d9e7ebdb7662424195357e585255c6c52472cb30900dae46a320f5eec375d432"
+    }
+  ]
+}
